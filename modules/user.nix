@@ -3,9 +3,9 @@
 
 {
 
-  users.users.rachel = {
+  users.users.syuvi = {
     isNormalUser = true;
-    description = "Lesley";
+    description = "Rachel";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
     ];
