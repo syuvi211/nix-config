@@ -5,7 +5,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking.hostName = "nixos";
-  
+
   programs.nix-ld.enable = true;
 
   fileSystems."/mnt/1TB" = {

@@ -35,9 +35,8 @@
     kdePackages.ark
     unrar
     irssi
-    mangohud
-    hyfetch
 #    openrgb-with-all-plugins
     protonup-qt
+    appimage-run
   ];
 }
