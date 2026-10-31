@@ -27,16 +27,12 @@
     cider-2
     openssh
     xfsprogs
-    pciutils #gpu
-    mesa-demos #gpu
-#    opentabletdriver
     xclicker
     osu-lazer-bin
     kdePackages.ark
     unrar
     irssi
-#    openrgb-with-all-plugins
-    protonup-qt
     appimage-run
+    vscodium
   ];
 }
