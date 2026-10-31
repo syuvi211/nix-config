@@ -15,7 +15,7 @@
       ./modules/locale.nix
       ./modules/network.nix
       ./modules/packages.nix
-      ./modules/plasma.nix
+      ./modules/plasma-sddm.nix
       ./modules/user.nix
 
       <home-manager/nixos>
@@ -25,7 +25,7 @@
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
 
-  home-manager.users.lesley = import ./home.nix;
+  home-manager.users.syuvi = import ./home.nix;
 
   system.stateVersion = "26.05";
 

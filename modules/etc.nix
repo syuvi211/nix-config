@@ -9,7 +9,7 @@
   programs.nix-ld.enable = true;
 
   fileSystems."/mnt/1TB" = {
-  device = "UUID=39440d18-245a-42a0-9a39-0d2753765b77";
+  device = "UUID=33399c76-ffec-477b-a91c-ce75f12b1ad5";
   fsType = "xfs";
   options = [ "defaults" ];
   };

@@ -1421,8 +1421,9 @@ get_kernel() {
         esac
 }
 
+
 get_uptime() {
-    # Get uptime in seconds.
+    # Verkrijg uptime in seconden.
     case $os in
         Linux|Windows|MINIX)
             if [[ -r /proc/uptime ]]; then
@@ -1440,7 +1441,6 @@ get_uptime() {
             boot=${boot/\{ sec = }
             boot=${boot/,*}
 
-            # Get current date in seconds.
             now=$(date +%s)
             s=$((now - boot))
         ;;
@@ -1467,44 +1467,46 @@ get_uptime() {
         ;;
     esac
 
-    d="$((s / 60 / 60 / 24)) days"
-    h="$((s / 60 / 60 % 24)) hours"
-    m="$((s / 60 % 60)) minutes"
+    # Zet uptime om naar Nederlandse tijdseenheden.
+    d="$((s / 60 / 60 / 24)) dagen"
+    h="$((s / 60 / 60 % 24)) uur"
+    m="$((s / 60 % 60)) minuten"
 
-    # Remove plural if < 2.
-    ((${d/ *} == 1)) && d=${d/s}
-    ((${h/ *} == 1)) && h=${h/s}
-    ((${m/ *} == 1)) && m=${m/s}
+    # Enkelvoud gebruiken bij 1.
+    ((${d/ *} == 1)) && d=${d/dagen/dag}
+    ((${m/ *} == 1)) && m=${m/minuten/minuut}
 
-    # Hide empty fields.
+    # Verberg lege waarden.
     ((${d/ *} == 0)) && unset d
     ((${h/ *} == 0)) && unset h
     ((${m/ *} == 0)) && unset m
 
     uptime=${d:+$d, }${h:+$h, }$m
     uptime=${uptime%', '}
-    uptime=${uptime:-$s seconds}
+    uptime=${uptime:-$s seconden}
 
-    # Make the output of uptime smaller.
+    # Verkort de uptime-uitvoer.
     case $uptime_shorthand in
         on)
-            uptime=${uptime/ minutes/ mins}
-            uptime=${uptime/ minute/ min}
-            uptime=${uptime/ seconds/ secs}
+            uptime=${uptime/ minuten/ min}
+            uptime=${uptime/ minuut/ min}
+            uptime=${uptime/ seconden/ sec}
+            uptime=${uptime/ seconde/ sec}
         ;;
 
         tiny)
-            uptime=${uptime/ days/d}
-            uptime=${uptime/ day/d}
-            uptime=${uptime/ hours/h}
-            uptime=${uptime/ hour/h}
-            uptime=${uptime/ minutes/m}
-            uptime=${uptime/ minute/m}
-            uptime=${uptime/ seconds/s}
+            uptime=${uptime/ dagen/d}
+            uptime=${uptime/ dag/d}
+            uptime=${uptime/ uur/u}
+            uptime=${uptime/ minuten/m}
+            uptime=${uptime/ minuut/m}
+            uptime=${uptime/ seconden/s}
+            uptime=${uptime/ seconde/s}
             uptime=${uptime//,}
         ;;
     esac
 }
+
 
 get_packages() {
     # to adjust the number of pkgs per pkg manager

@@ -1,0 +1,40 @@
+#!/bin/bash
+
+pluralize() {
+    local count=$1
+    local singular=$2
+    local plural=$3
+
+    if [ "$count" -eq 1 ]; then
+        echo "$count $singular"
+    else
+        echo "$count $plural"
+    fi
+}
+
+INSTALL_DATE_FULL=$(stat -c %w /)
+
+if [[ "$INSTALL_DATE_FULL" == "n/a" ]]; then
+    echo "❌ FOUT: Aanmaakdatum wordt niet ondersteund door het bestandssysteem."
+    echo "➡️ Gebruik de Pacman-logmethode als alternatief."
+    exit 1
+fi
+
+INSTALL_DATE_SECONDS=$(date -d "$INSTALL_DATE_FULL" +%s)
+CURRENT_DATE_SECONDS=$(date +%s)
+DAYS=$(( (CURRENT_DATE_SECONDS - INSTALL_DATE_SECONDS) / 86400 ))
+
+if [ "$DAYS" -ge 365 ]; then
+    YEARS=$(( DAYS / 365 ))
+    EXTRA_DAYS=$(( DAYS % 365 ))
+
+    OUTPUT="$(pluralize "$YEARS" jaar jaren)"
+
+    if [ "$EXTRA_DAYS" -gt 0 ]; then
+        OUTPUT="$OUTPUT, $(pluralize "$EXTRA_DAYS" dag dagen)"
+    fi
+
+    echo "$OUTPUT."
+else
+    echo "$(pluralize "$DAYS" dag dagen)"
+fi

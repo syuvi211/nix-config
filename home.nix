@@ -49,7 +49,7 @@ in
         --backend kitty \
         --source $HOME/.config/neofetch/png/ichigo2.png
         fi
-        PS1="\[\e[38;2;194;246;255m\][\u@\h:\w]\\$\[\e[0m\] "
+       PS1='\[\e[1;96m\][\u@\h:\w]\$\[\e[0m\] '
   '';
 };
 }
