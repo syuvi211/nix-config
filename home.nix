@@ -4,8 +4,8 @@ let
   dotfiles = ./.dotfiles;
 in
 {
-  home.username = "lesley";
-  home.homeDirectory = "/home/lesley";
+  home.username = "syuvi";
+  home.homeDirectory = "/home/syuvi";
   home.stateVersion = "26.05";
   home.enableNixpkgsReleaseCheck = false;
   programs.home-manager.enable = true;
@@ -47,7 +47,7 @@ in
         if [[ $- == *i* ]]; then
       $HOME/.config/neofetch/neofetch \
         --backend kitty \
-        --source $HOME/.config/neofetch/png/lain2.png
+        --source $HOME/.config/neofetch/png/ichigo2.png
         fi
         PS1="\[\e[38;2;194;246;255m\][\u@\h:\w]\\$\[\e[0m\] "
   '';
